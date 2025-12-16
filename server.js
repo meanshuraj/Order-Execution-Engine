@@ -6,6 +6,12 @@ fastify.register(require('@fastify/cors'), {
   origin: true
 });
 
+// Register static files
+fastify.register(require('@fastify/static'), {
+  root: require('path').join(__dirname, 'public'),
+  prefix: '/'
+});
+
 // Mock DEX Router
 class MockDexRouter {
   async getRaydiumQuote(tokenIn, tokenOut, amount) {
@@ -131,11 +137,14 @@ class OrderQueue {
       ...(order.bestQuote && { selectedDex: order.bestQuote.dex })
     };
     
-    fastify.websocketServer.clients.forEach(client => {
-      if (client.readyState === 1) { // WebSocket.OPEN
-        client.send(JSON.stringify(update));
-      }
-    });
+    // Store clients globally to access them
+    if (global.wsClients) {
+      global.wsClients.forEach(client => {
+        if (client.readyState === 1) { // WebSocket.OPEN
+          client.send(JSON.stringify(update));
+        }
+      });
+    }
   }
 }
 
@@ -168,21 +177,38 @@ fastify.post('/api/orders/execute', async (request, reply) => {
   reply.send({ orderId, status: 'pending' });
 });
 
+// Initialize global WebSocket clients set
+global.wsClients = new Set();
+
 // WebSocket endpoint
 fastify.register(async function (fastify) {
   fastify.get('/ws', { websocket: true }, (connection, req) => {
+    console.log('New WebSocket connection');
+    global.wsClients.add(connection.socket);
+    
     connection.socket.on('message', message => {
       console.log('WebSocket message:', message.toString());
     });
     
     connection.socket.on('close', () => {
       console.log('WebSocket connection closed');
+      global.wsClients.delete(connection.socket);
+    });
+    
+    connection.socket.on('error', (error) => {
+      console.log('WebSocket error:', error);
+      global.wsClients.delete(connection.socket);
     });
   });
 });
 
-// Root route
+// Root route - serve index.html
 fastify.get('/', async (request, reply) => {
+  return reply.sendFile('index.html');
+});
+
+// API info route
+fastify.get('/api', async (request, reply) => {
   return { 
     message: 'Order Execution Engine API',
     endpoints: {
