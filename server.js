@@ -144,11 +144,6 @@ const orderQueue = new OrderQueue();
 // Register WebSocket
 fastify.register(require('@fastify/websocket'));
 
-// Serve static files
-fastify.register(require('@fastify/static'), {
-  root: require('path').join(__dirname, 'public')
-});
-
 // Routes
 fastify.post('/api/orders/execute', async (request, reply) => {
   const { tokenIn, tokenOut, amount, orderType = 'market' } = request.body;
@@ -184,6 +179,18 @@ fastify.register(async function (fastify) {
       console.log('WebSocket connection closed');
     });
   });
+});
+
+// Root route
+fastify.get('/', async (request, reply) => {
+  return { 
+    message: 'Order Execution Engine API',
+    endpoints: {
+      health: 'GET /health',
+      orders: 'POST /api/orders/execute',
+      websocket: 'WebSocket /ws'
+    }
+  };
 });
 
 // Health check
