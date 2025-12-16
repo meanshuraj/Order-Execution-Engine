@@ -69,4 +69,29 @@ npm test
 
 ## Deployment
 
-Deploy to any Node.js hosting platform. The server runs on port 3000 by default.
+**Live Demo**: [https://order-execution-engine.onrender.com](https://order-execution-engine.onrender.com)
+
+### Local Development
+```bash
+npm install
+npm start
+```
+
+### Production Deployment
+Deployed on Render.com with automatic deployments from GitHub.
+
+## Demo Video
+
+🎥 **Watch Demo**: [Order Execution Engine Demo](https://youtu.be/demo-link)
+
+## API Documentation
+
+### Endpoints
+- `GET /health` - Health check
+- `POST /api/orders/execute` - Submit order
+- `WebSocket /ws` - Real-time updates
+
+### Testing
+- **Postman Collection**: Import `postman-collection.json`
+- **Unit Tests**: `npm test` (10+ tests)
+- **Visual Client**: Open `client-test.html`

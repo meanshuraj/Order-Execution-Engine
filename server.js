@@ -144,6 +144,11 @@ const orderQueue = new OrderQueue();
 // Register WebSocket
 fastify.register(require('@fastify/websocket'));
 
+// Serve static files
+fastify.register(require('@fastify/static'), {
+  root: require('path').join(__dirname, 'public')
+});
+
 // Routes
 fastify.post('/api/orders/execute', async (request, reply) => {
   const { tokenIn, tokenOut, amount, orderType = 'market' } = request.body;
@@ -189,8 +194,9 @@ fastify.get('/health', async (request, reply) => {
 // Start server
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
-    console.log('Order Execution Engine running on port 3000');
+    const port = process.env.PORT || 3000;
+    await fastify.listen({ port, host: '0.0.0.0' });
+    console.log(`Order Execution Engine running on port ${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
