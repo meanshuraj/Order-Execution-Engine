@@ -1,0 +1,35 @@
+{
+  "name": "order-execution-engine",
+  "version": "1.0.0",
+  "description": "DEX order execution engine with WebSocket updates",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest",
+    "demo": "node test-client.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.5.0",
+    "@fastify/websocket": "^8.3.1",
+    "fastify": "^4.24.3",
+    "uuid": "^9.0.1",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "dex",
+    "solana",
+    "trading",
+    "websocket",
+    "raydium",
+    "meteora"
+  ],
+  "author": "Order Execution Engine",
+  "license": "MIT"
+}
