@@ -69,7 +69,9 @@ npm test
 
 ## Deployment
 
-**Live Demo**: [https://order-execution-engine.onrender.com](https://order-execution-engine.onrender.com)
+**Live Demo**: [https://order-execution-engine-xxxx.onrender.com](https://order-execution-engine-xxxx.onrender.com) *(Update after Render deployment)*
+
+**GitHub Repository**: [https://github.com/meanshuraj/Order-Execution-Engine](https://github.com/meanshuraj/Order-Execution-Engine)
 
 ### Local Development
 ```bash
@@ -82,7 +84,7 @@ Deployed on Render.com with automatic deployments from GitHub.
 
 ## Demo Video
 
-🎥 **Watch Demo**: [Order Execution Engine Demo](https://youtu.be/demo-link)
+🎥 **Watch Demo**: [Order Execution Engine Demo](https://youtu.be/YOUR_VIDEO_ID) *(Update after YouTube upload)*
 
 ## API Documentation
 
