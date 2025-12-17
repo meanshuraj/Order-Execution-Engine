@@ -174,7 +174,7 @@
                 document.getElementById('amount').value = amount;
                 
                 await submitOrder();
-                await new Promise(resolve => setTimeout(resolve, 100)); // Small delay
+                await new Promise(resolve => setTimeout(resolve, 100));
             }
         }
         
@@ -191,7 +191,6 @@
             
             const order = orders.get(update.orderId) || {};
             
-            // Update order data
             if (update.status) order.status = update.status;
             if (update.txHash) order.txHash = update.txHash;
             if (update.executedPrice) order.executedPrice = update.executedPrice;
@@ -200,7 +199,6 @@
             
             orders.set(update.orderId, order);
             
-            // Update display
             orderDiv.className = `order ${order.status}`;
             orderDiv.innerHTML = `
                 <strong>Order ${update.orderId.substring(0, 8)}...</strong><br>
@@ -220,13 +218,11 @@
             document.getElementById('log').innerHTML = '<h4>Console Log</h4>';
         }
         
-        // Auto-connect WebSocket on page load
         window.onload = () => {
             connectWebSocket();
             log('Page loaded, connecting to WebSocket...');
         };
         
-        // Reconnect WebSocket if connection is lost
         setInterval(() => {
             if (!ws || ws.readyState === WebSocket.CLOSED) {
                 connectWebSocket();
