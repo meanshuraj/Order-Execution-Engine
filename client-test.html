@@ -219,11 +219,13 @@
         }
         
         window.onload = () => {
-            connectWebSocket();
-            log('Page loaded, connecting to WebSocket...');
+            log('Page loaded. Click Connect WebSocket to start.');
         };
         
-        setInterval(() => {
+
+    </script>
+</body>
+</html>
             if (!ws || ws.readyState === WebSocket.CLOSED) {
                 connectWebSocket();
             }
