@@ -96,4 +96,4 @@ Deployed on Render.com with automatic deployments from GitHub.
 ### Testing
 - **Postman Collection**: Import `postman-collection.json`
 - **Unit Tests**: `npm test` (10+ tests)
-- **Visual Client**: Open `client-test.html`
+- **Visual Client**: Open `index.html`
