@@ -84,7 +84,7 @@ Deployed on Render.com with automatic deployments from GitHub.
 
 ## Demo Video
 
-🎥 **Watch Demo**: [Order Execution Engine Demo](https://youtu.be/ndh90QuDApM) *(Update after YouTube upload)*
+🎥 **Watch Demo**: [Order Execution Engine Demo](https://www.youtube.com/watch?v=wqeHhT1pwC0) *(Update after YouTube upload)*
 
 ## API Documentation
 
